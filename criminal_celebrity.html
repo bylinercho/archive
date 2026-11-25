@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>그때그때 달라요: 범법 연예인의 비대칭적 자숙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --bg:#1f1e26; --bg2:#2a2933; --panel:#2f2e39; --line:#43424f;
+  --ink:#f1f0f4; --ink2:#c3c1cd; --mute:#8d8b9a;
+  --y:#ffc93c; --red:#e5484d; --pink:#f7c0c3;
+  --fine:#2f7de1; --susp:#eba000; --jail:#e5484d; --none:#8a8a82;
+  --dig:#2fc79a; --abroad:#f08f74;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;line-height:1.6}
+a{color:var(--y)}
+::selection{background:var(--y);color:#1f1e26}
+.display{font-family:'Black Han Sans','Pretendard',sans-serif;font-weight:400;font-style:italic;color:var(--y);letter-spacing:-.01em;line-height:1.15}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section.ch{padding:110px 0 70px;position:relative}
+.kicker{font-size:12px;letter-spacing:.2em;color:var(--y);font-weight:700;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.kicker:before{content:"";width:26px;height:2px;background:var(--y)}
+h2.display{font-size:clamp(30px,4.6vw,54px);margin:0 0 18px}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--ink2);max-width:62ch}
+.hl{background:linear-gradient(transparent 58%,rgba(229,72,77,.55) 0);padding:0 3px}
+.tape{height:34px;background:repeating-linear-gradient(-45deg,#ffc93c 0 22px,#17161c 22px 44px);}
+/* progress */
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--y);z-index:100}
+/* toc */
+#toc{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:6px;opacity:0;transition:.3s}
+#toc.on{opacity:1}
+#toc a{font-size:12px;color:var(--mute);text-decoration:none;display:flex;gap:8px;align-items:center;justify-content:flex-end;transition:.2s}
+#toc a i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.2s;flex:none}
+#toc a span{opacity:0;transition:.2s;transform:translateX(6px)}
+#toc a:hover span,#toc a.act span{opacity:1;transform:none}
+#toc a.act{color:var(--y)} #toc a.act i{background:var(--y);box-shadow:0 0 0 4px rgba(255,201,60,.2)}
+@media(max-width:1200px){#toc{display:none}}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+/* hero */
+.hero{height:100vh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#34333f 0,#1a1920 75%)}
+.hero svg.crack{position:absolute;inset:0;width:100%;height:100%}
+.hero svg.crack path{fill:none;stroke:rgba(224,214,180,.38);stroke-width:1.4;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:draw 2.4s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero h1{font-size:clamp(54px,10vw,140px);margin:0;animation:shake .5s .2s both}
+@keyframes shake{0%{transform:translate(0)}20%{transform:translate(-8px,4px) rotate(-1deg)}40%{transform:translate(7px,-5px) rotate(1deg)}60%{transform:translate(-4px,3px)}80%{transform:translate(3px,-2px)}100%{transform:none}}
+.hero .sub{font-size:clamp(20px,3vw,38px);font-weight:300;margin:20px 0 40px;opacity:0;animation:fadeup 1s 1s forwards}
+.hero .by{display:inline-block;padding:7px 16px;border-radius:99px;background:rgba(23,22,28,.88);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 6px 20px rgba(0,0,0,.45);color:var(--ink);font-size:14px;opacity:0;animation:fadeup 1s 1.4s forwards}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero .tp{position:absolute;left:-10%;width:130%;height:40px;display:flex;align-items:center;overflow:hidden;font-weight:800;font-size:13px;letter-spacing:.25em;color:#17161c;background:var(--y);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.hero .tp div{white-space:nowrap;animation:marq 22s linear infinite}
+.hero .tp.a{top:12%;transform:rotate(-5deg)} .hero .tp.b{bottom:12%;transform:rotate(4deg)} .hero .tp.b div{animation-direction:reverse}
+@keyframes marq{to{transform:translateX(-50%)}}
+.cue{position:absolute;bottom:26px;left:0;right:0;color:var(--mute);font-size:13px;animation:cue 1.9s infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+/* gauges */
+.gauges{display:grid;gap:26px;margin-top:10px}
+.g .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;font-size:15px}
+.g .top b{font-size:34px;color:var(--y);font-variant-numeric:tabular-nums}
+.g .tr{height:14px;border-radius:99px;background:#3a3947;overflow:hidden}
+.g .fl{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#ff7a7e,#ff5a5f);transition:width 1.6s cubic-bezier(.22,1,.36,1);position:relative}
+.g .fl:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-100%);animation:shine 2.6s 1.6s infinite}
+@keyframes shine{to{transform:translateX(100%)}}
+.g small{color:var(--mute);font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:860px){.cards3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px 24px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--y)}
+.card h4{margin:12px 0 6px;font-size:19px}
+.card p{margin:0;color:var(--ink2);font-size:14.5px}
+.card .ic{width:48px;height:48px;color:var(--y)}
+/* cycle */
+.cycle{position:relative;width:min(420px,100%);aspect-ratio:1;margin:0 auto}
+.cycle svg{width:100%;height:100%}
+.cycle .ring{transform-origin:50% 50%;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cycle .mid{position:absolute;inset:0;display:grid;place-items:center;font-family:'Black Han Sans';font-size:clamp(26px,4vw,38px);text-align:center;line-height:1.1;pointer-events:none}
+.cycle .step{position:absolute;font-size:13px;font-weight:700;background:#17161c;border:1px solid var(--line);border-radius:99px;padding:6px 12px;transition:.3s;cursor:default}
+.cycle .step.hot{background:var(--y);color:#17161c;scale:1.12}
+/* sports table */
+table.sp{width:100%;border-collapse:collapse;margin-top:30px;font-size:14px;background:var(--panel);border-radius:14px;overflow:hidden}
+table.sp th,table.sp td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle;color:var(--ink2)}
+table.sp th{background:#d7d6dc;color:#1f1e26;font-weight:800}
+table.sp td:first-child{background:#cfcdd4;color:#1f1e26;font-weight:800}
+table.sp tr:hover td:not(:first-child){background:rgba(255,201,60,.08);color:var(--ink)}
+.reveal-q{position:relative;margin-top:26px;border-radius:16px;overflow:hidden;background:#17161c;text-align:center;padding:60px 20px;cursor:pointer}
+.reveal-q .ta{font-family:'Black Han Sans';font-size:clamp(28px,5vw,56px);color:#fff}
+.reveal-q .tb{display:inline-block;margin-top:10px;background:var(--red);color:#fff;font-family:'Black Han Sans';font-style:italic;font-size:clamp(28px,5vw,56px);padding:2px 26px;transform:skewX(-14deg) scale(.9);opacity:0;transition:.5s .3s}
+.reveal-q.in .tb{opacity:1;transform:skewX(-14deg)}
+.reveal-q .hint{color:var(--mute);font-size:12px;margin-top:14px}
+/* law */
+.law{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+@media(max-width:860px){.law{grid-template-columns:1fr}}
+.law ul{padding-left:18px;margin:8px 0 0;color:var(--ink2)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;background:rgba(255,201,60,.15);color:var(--y);margin:0 6px 6px 0}
+.stamp{font-family:'Black Han Sans';color:var(--red);border:4px solid var(--red);padding:6px 16px;display:inline-block;font-size:26px;transform:rotate(-6deg) scale(2);opacity:0;transition:.5s cubic-bezier(.5,1.6,.5,1)}
+.in .stamp,.stamp.in{opacity:.92;transform:rotate(-6deg) scale(1)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;counter-reset:s}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+.steps>div{padding:22px 20px;background:var(--panel);border:1px solid var(--line);position:relative;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%);transition:.3s}
+.steps>div:nth-child(1){background:#17161c}
+.steps>div:hover{background:#3b3a47}
+.steps h5{margin:0 0 6px;font-size:16px;color:var(--y)}
+.steps p{margin:0;font-size:13px;color:var(--ink2)}
+.reasons{display:grid;gap:10px;margin-top:26px}
+.reasons div{display:flex;gap:16px;align-items:center;background:var(--panel);border-radius:12px;padding:16px 18px;border:1px solid var(--line)}
+.reasons .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--y);color:#17161c;font-weight:800;display:grid;place-items:center}
+.reasons b{display:block}
+.reasons span{color:var(--ink2);font-size:14px}
+/* analysis tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 22px}
+.tabs button{font:inherit;font-weight:700;font-size:15px;cursor:pointer;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:99px;padding:9px 20px;transition:.25s}
+.tabs button:hover{border-color:var(--y);color:var(--ink)}
+.tabs button.on{background:var(--y);color:#17161c;border-color:var(--y)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat small{color:var(--mute);font-size:12px;display:block}
+.stat b{font-size:26px;font-variant-numeric:tabular-nums}
+.stat b.y{color:var(--y)}
+.stat em{font-style:normal;color:var(--ink2);font-size:12.5px;display:block}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 10px;margin-bottom:18px}
+.legend button{font:inherit;font-size:13px;color:var(--ink2);background:#25242d;border:1px solid var(--line);border-radius:99px;padding:5px 12px 5px 9px;cursor:pointer;display:flex;gap:8px;align-items:center;transition:.2s}
+.legend button i{width:14px;height:10px;border-radius:3px;display:block}
+.legend button.off{opacity:.38;text-decoration:line-through}
+.legend button:hover{border-color:var(--y)}
+.hbar{position:relative;display:grid;grid-template-columns:104px 1fr;row-gap:5px;align-items:center}
+.hbar .nm{font-size:13.5px;text-align:right;padding-right:12px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbar .tk{position:relative;height:24px;transition:opacity .3s;margin-right:112px}
+.hbar .tk.dim{opacity:.12}
+.hbar .seg{position:absolute;top:2px;height:20px;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);border-radius:0}
+.hbar .seg.first{border-radius:4px 0 0 4px}.hbar .seg.last{border-radius:0 4px 4px 0}.hbar .seg.first.last{border-radius:4px}
+.hbar .ext{position:absolute;top:2px;height:20px;border:1.5px dashed;border-left:0;opacity:0;transition:opacity .6s 1.1s}
+.hbar .vl{position:absolute;top:0;line-height:24px;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;opacity:0;transition:opacity .5s .9s}
+.hbar .tk:hover .seg{filter:brightness(1.25)}
+.hbar .tk.hv{background:rgba(255,255,255,.05)}
+.hbar .nm.dead:after{content:" ✝";color:var(--red)}
+.axis{position:absolute;left:104px;right:112px;top:0;bottom:26px;pointer-events:none}
+.axis i{position:absolute;top:0;bottom:0;border-left:1px solid rgba(255,255,255,.07)}
+.axis u{position:absolute;bottom:-24px;font-size:11px;color:var(--mute);text-decoration:none;transform:translateX(-50%)}
+.avg{position:absolute;top:0;bottom:0;border-left:2px dashed var(--y);opacity:0;transition:left 1s ease,opacity .5s 1.2s;pointer-events:none}
+.avg span{position:absolute;top:-24px;left:0;transform:translateX(-50%);font-size:11.5px;background:var(--y);color:#17161c;padding:2px 8px;border-radius:99px;white-space:nowrap;font-weight:700}
+.chwrap{position:relative;padding-top:28px;padding-bottom:26px}
+.takeaway{margin-top:24px;display:flex;gap:14px;align-items:center;font-size:clamp(16px,2vw,21px);font-weight:700;color:var(--y)}
+.takeaway:before{content:"";width:34px;height:20px;flex:none;background:var(--y);clip-path:polygon(0 25%,60% 25%,60% 0,100% 50%,60% 100%,60% 75%,0 75%)}
+.notes{margin-top:18px;background:#25242d;border-radius:12px;padding:16px 20px;font-size:14px;color:var(--ink2);list-style:none}
+.notes li{margin:4px 0}.notes li:before{content:"▸ ";color:var(--y)}
+.small{font-size:12px;color:var(--mute);margin-top:10px}
+/* tooltip */
+#tip{position:fixed;z-index:200;pointer-events:none;background:#17161c;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;opacity:0;transition:opacity .12s;box-shadow:0 12px 30px rgba(0,0,0,.5);max-width:260px}
+#tip b{font-size:15px}#tip .r{display:flex;justify-content:space-between;gap:16px;color:var(--ink2)}#tip .r span:last-child{color:var(--ink)}
+/* strip */
+.strip{display:grid;grid-template-columns:70px 1fr;row-gap:16px;position:relative;margin-top:10px}
+.strip .lb{font-weight:700;text-align:right;padding-right:14px;align-self:center}
+.strip .rw{position:relative;height:34px;border-bottom:1px solid rgba(255,255,255,.08)}
+.dot{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--bg);cursor:pointer;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.dot.o{background:transparent!important;border:2px solid;}
+.in .dot{transform:scale(1)}
+.dot:hover{transform:scale(1.7)!important;z-index:3}
+.rng{position:absolute;top:50%;height:4px;margin-top:-2px;background:rgba(255,255,255,.12);border-radius:4px;width:0;transition:width 1.2s}
+.sax{position:relative;height:22px;margin-left:70px;margin-top:6px}
+.sax u{position:absolute;font-size:11px;color:var(--mute);text-decoration:none;transform:translateX(-50%)}
+/* rate bars */
+.rate{display:grid;grid-template-columns:80px 1fr 90px;gap:10px 14px;align-items:center}
+.rate .rt{height:28px;background:#3a3947;border-radius:6px;overflow:hidden;position:relative}
+.rate .rf{height:100%;width:0;background:linear-gradient(90deg,#c9372c,#ff6a5e);transition:width 1.5s cubic-bezier(.22,1,.36,1);border-radius:6px}
+.rate b{font-variant-numeric:tabular-nums;font-size:20px}
+.rate small{color:var(--mute);display:block;font-size:11.5px;margin-top:-4px}
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media(max-width:760px){.cmp{grid-template-columns:1fr}}
+.cmp h4{margin:0 0 14px}
+.pair{display:flex;gap:18px;align-items:flex-end;height:210px;border-bottom:1px solid var(--line);padding:0 14px}
+.pair .cl{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.pair .bx{width:100%;max-width:90px;height:0;border-radius:8px 8px 0 0;transition:height 1.3s cubic-bezier(.22,1,.36,1);position:relative}
+.pair .bx:hover{filter:brightness(1.2)}
+.pair .v{font-weight:800;margin-bottom:6px;font-size:15px;opacity:0;transition:.5s 1.1s}.in .pair .v{opacity:1}
+.pair .l{text-align:center;font-size:13px;color:var(--ink2);margin-top:8px}
+.lblrow{display:flex;gap:18px;padding:0 14px}.lblrow div{flex:1;text-align:center;font-size:13px;color:var(--ink2);margin-top:8px}
+/* paths */
+.paths{display:grid;grid-template-columns:1.5fr 1fr;gap:34px;align-items:center}
+@media(max-width:860px){.paths{grid-template-columns:1fr}}
+.donut{position:relative;width:min(260px,100%);margin:0 auto}
+.donut svg{transform:rotate(-90deg);width:100%}
+.donut circle{fill:none;stroke-width:34;transition:stroke-dashoffset 1.6s cubic-bezier(.22,1,.36,1),stroke-width .2s;cursor:pointer}
+.donut circle:hover{stroke-width:42}
+.donut .ct{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none}
+.donut .ct b{font-family:'Black Han Sans';font-size:44px;color:var(--y);display:block;line-height:1}
+.callouts{display:grid;gap:12px;margin-top:20px}
+.callouts div{border-radius:12px;padding:14px 16px;font-weight:700;font-size:14px;color:#10241d}
+/* results */
+.res{display:grid;grid-template-columns:1fr 1.4fr;gap:22px;margin-top:28px}
+@media(max-width:860px){.res{grid-template-columns:1fr}}
+.common{border:2px solid var(--y);border-radius:16px;padding:26px;text-align:center;font-size:clamp(17px,2vw,22px);font-weight:700}
+.common em{font-style:normal;color:var(--y)}
+.chips div{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink2)}
+.chips b{flex:none;width:64px;color:var(--y);background:rgba(255,201,60,.12);border-radius:6px;text-align:center;padding:2px 0;align-self:flex-start}
+.finds>div{margin:0 0 20px}.finds>div:last-child{margin:0}.finds h5{margin:0 0 4px;font-size:17px;color:var(--y)}
+.finds span{color:var(--ink2);font-size:14.5px}
+.concl{background:linear-gradient(135deg,#2a2933,#1a1920);text-align:center}
+.concl h2{font-family:'Pretendard';font-weight:900;color:#fff;font-style:normal;font-size:clamp(28px,4.2vw,50px)}
+.concl ul{list-style:none;padding:0;max-width:760px;margin:36px auto 0;text-align:left;display:grid;gap:14px}
+.concl li{display:flex;gap:14px;font-size:17px;color:var(--ink2);align-items:flex-start}
+.concl li:before{content:"!";flex:none;width:26px;height:26px;border-radius:50%;background:var(--y);color:#17161c;font-weight:900;display:grid;place-items:center;margin-top:2px;animation:pu 2.4s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(255,201,60,.5)}70%,100%{box-shadow:0 0 0 12px rgba(255,201,60,0)}}
+.refs{font-size:13px;color:var(--mute);padding-left:18px}.refs li{margin:7px 0}
+footer{text-align:center;padding:60px 20px 40px;color:var(--mute);font-size:13px}
+footer .display{font-size:clamp(40px,7vw,80px);display:block;margin-bottom:16px}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav id="toc"></nav>
+<div id="tip"></div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <svg class="crack" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid slice">
+    <g id="cracks"></g>
+  </svg>
+  <div class="tp a"><div id="tpa"></div></div>
+  <div class="tp b"><div id="tpb"></div></div>
+  <div style="position:relative;z-index:2;padding:0 24px">
+    <div style="font-size:12px;letter-spacing:.3em;color:var(--y);font-weight:700;margin-bottom:18px">DATA JOURNALISM · 10-YEAR TRACKING</div>
+    <h1 class="display">그때그때 달라요</h1>
+    <div class="sub">범법 연예인의 비대칭적 자숙</div>
+    <div class="by">DSJA_5 TeamA+ · 고민성 양지혜 유현석 장예담 조찬희</div>
+  </div>
+  <div class="cue">아래로 스크롤 ↓</div>
+</header>
+
+<!-- 01 공인 -->
+<section class="ch" id="c1" data-t="연예인은 공인인가?">
+  <div class="wrap">
+    <div class="kicker rv">01 · 문제의식</div>
+    <h2 class="display rv">연예인은 공인인가?</h2>
+    <p class="lead rv" style="max-width:none">공인(公人): 공적인 일에 종사하는 사람. 법적 정의는 없지만, 사회가 받아들이는 '공인'의 범위는 다릅니다.</p>
+    <div class="cards3">
+      <div class="card rv"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="24" cy="14" r="6"/><path d="M12 40c0-8 5-13 12-13s12 5 12 13"/><path d="M8 18c-3 3-3 9 0 12M40 18c3 3 3 9 0 12"/></svg><h4>대중적 영향력</h4><p>사회 전반에 명성이 있고, 대중에게 설득력과 영향력을 행사하는가?</p></div>
+      <div class="card rv d1"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6"/></svg><h4>사회적 파급력</h4><p>대중의 관심을 통해 막대한 경제적 이익을 누리고, 파급력을 사회에 투영하는가?</p></div>
+      <div class="card rv d2"><svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5l4 9 10 1-7.500 6.500 2.500 10L24 26l-9 5.500 2.500-10L10 15l10-1z"/><path d="M14 44c0-6 4-10 10-10s10 4 10 10"/></svg><h4>자발성</h4><p>공적 논쟁이나 사안의 전면에 스스로 참여하는가?</p></div>
+    </div>
+    <div class="grid2" style="margin-top:70px">
+      <div class="gauges" id="gauges">
+        <div class="g rv"><div class="top"><span>국민 중 연예인을 <b>공인</b>으로 인식</span><b data-count="76.3" data-dec="1" data-suf="%">0%</b></div><div class="tr"><div class="fl" data-w="76.3"></div></div><small>출처: 한국언론진흥재단</small></div>
+        <div class="g rv d1"><div class="top"><span>연예노조원 중 스스로를 <b style="font-size:inherit;color:inherit">공인</b>으로 인식</span><b data-count="77.3" data-dec="1" data-suf="%">0%</b></div><div class="tr"><div class="fl" data-w="77.3"></div></div><small>출처: 한국방송연기자노동조합</small></div>
+        <div class="g rv d2"><div class="top"><span>응답자 중 연예인의 사회적 영향력 인정</span><b data-count="84" data-suf="%">0%</b></div><div class="tr"><div class="fl" data-w="84"></div></div><small>출처: 한국갤럽</small></div>
+      </div>
+      <div class="rv d1">
+        <div class="card" style="border-color:var(--y)">
+          <div class="kicker" style="margin:0 0 10px">법률 · 학계의 시각</div>
+          <p style="margin:0 0 10px;color:var(--ink2)">법원은 언론 소송 등에서 연예인을 <b style="color:#fff">'자발적·비정치적 공인'</b>으로 분류해 왔습니다. 명성과 경제적 이익을 얻는 만큼 비판과 사회적 검증도 감수해야 한다는 판단입니다.</p>
+          <p style="margin:0;color:var(--ink2)">동일한 위법행위라도 행위자가 공인이면 대중은 더 강한 비난을 요구하고,<br><b style="color:#fff">'자숙 기간(용서의 기준)'도 더 길게</b> 요구합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tape"></div>
+
+<!-- 자숙 -->
+<section class="ch" id="c2" data-t="자숙(自肅)">
+  <div class="wrap">
+    <div class="kicker rv">02 · 문제의식</div>
+    <h2 class="display rv">자숙 自肅</h2>
+    <p class="lead rv">'자신의 행동을 스스로 조심함.' 자숙은 단순히 활동을 쉬는 시간이 아니라,<br>다시 대중 앞에 설 자격이 있는지 가늠하는 과정입니다.</p>
+    <div class="grid2" style="margin-top:44px">
+      <div class="rv">
+        <div class="card" style="background:rgba(255,255,255,.06)">
+          <p style="margin:0;color:var(--ink2)">범죄·논란이 경미하게 처리되거나 재빠른 복귀로 이어질 경우,<br>대중은 <span class="hl" style="color:#fff">'잘못을 저질러도 빨리 복귀할 수 있다'</span>는 인식을 학습할 위험이 있습니다.<br>특히 <span class="hl" style="color:#fff">청소년 세대가 연예인을 롤모델로 삼는 문화적 특성</span>을 감안하면<br>복귀 시점과 과정에 대한 도덕적·교육적 논의가 필요합니다.</p>
+          <div class="small">초등학생 10명 중 4명은 연예인이나 운동선수를 꿈꿉니다 (한국보건사회연구원)</div>
+        </div>
+        <p class="small" style="margin-top:18px">▶ 순환 고리 위에 마우스를 올려보세요</p>
+      </div>
+      <div class="cycle rv d1" id="cycle">
+        <svg viewBox="0 0 400 400" style="overflow:visible"><defs>
+          <marker id="ar1" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="38" viewBox="0 0 10 10" refX="1" refY="5" orient="auto" overflow="visible"><path d="M0 0L10 5L0 10z" fill="#ff7a7e"/></marker>
+          <marker id="ar2" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="38" viewBox="0 0 10 10" refX="1" refY="5" orient="auto" overflow="visible"><path d="M0 0L10 5L0 10z" fill="#ff9d9e"/></marker>
+          <marker id="ar3" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="38" viewBox="0 0 10 10" refX="1" refY="5" orient="auto" overflow="visible"><path d="M0 0L10 5L0 10z" fill="#ffb5b6"/></marker>
+          <marker id="ar4" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="38" viewBox="0 0 10 10" refX="1" refY="5" orient="auto" overflow="visible"><path d="M0 0L10 5L0 10z" fill="#ffcdce"/></marker></defs>
+          <g class="ring"><path d="M200 50 A150 150 0 0 1 330 125" stroke="#ff7a7e" stroke-width="22" fill="none" marker-end="url(#ar1)"/><path d="M350 200 A150 150 0 0 1 275 330" stroke="#ff9d9e" stroke-width="22" fill="none" marker-end="url(#ar2)"/><path d="M200 350 A150 150 0 0 1 70 275" stroke="#ffb5b6" stroke-width="22" fill="none" marker-end="url(#ar3)"/><path d="M50 200 A150 150 0 0 1 125 70" stroke="#ffcdce" stroke-width="22" fill="none" marker-end="url(#ar4)"/></g>
+        </svg>
+        <div class="mid">CRIME<br>CYCLE</div>
+        <div class="step" style="top:2%;left:50%;transform:translateX(-50%)" data-k="0">① 범죄 진입 장벽 하락</div>
+        <div class="step" style="top:46%;right:-2%" data-k="1">② 단기 자숙 후 조기 복귀</div>
+        <div class="step" style="bottom:2%;left:50%;transform:translateX(-50%)" data-k="2">③ 사법·윤리적 질책 희석</div>
+        <div class="step" style="top:46%;left:-2%" data-k="3">④ 대중적 범죄 불감증 확산</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 스포츠 vs 연예계 -->
+<section class="ch" id="c3" data-t="스포츠 vs 연예계" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="kicker rv">03 · 문제의식</div>
+    <h2 class="display rv">스포츠 협회 징계 규정</h2>
+    <p class="lead rv">K리그와 KBO는 범죄 유형별로 자격정지·출장정지·제재금을 명확히 규정합니다.</p>
+    <div style="overflow-x:auto" class="rv">
+    <table class="sp">
+      <tr><th style="width:90px"></th><th>K리그 기준</th><th>KBO 기준</th></tr>
+      <tr><td>마약</td><td>도핑 규정 위반 또는 반사회적 행위로 간주하여 제재</td><td>무기 또는 1년 이상의 실격</td></tr>
+      <tr><td>폭행</td><td>3개월 이상 자격정지 · 5경기 이상 출장정지 · 500만원 이상 제재금</td><td>2개월 이상 참가활동정지 · 50경기 이상 출장정지 · 500만원 이상 제재금</td></tr>
+      <tr><td>성범죄</td><td>(강간 등) 제명 · (기타 성범죄) 6개월 이상 자격정지<br>10경기 이상 출장정지 · 1천만원 이상 제재금</td><td>(성폭행·추행) 영구, 무기 또는 1년 이상 실격<br>(성희롱) 20경기 이상 출장정지 · 200만원 이상 제재금</td></tr>
+      <tr><td>도박</td><td>제명 · 1년 이상의 자격정지 및 출장정지 · 1천만원 이상 제재금 · 사회봉사</td><td>1개월 이상 참가활동정지 · 30경기 이상 출장정지 · 300만원 이상 제재금</td></tr>
+      <tr><td>음주운전</td><td>(면허정지) 8~15경기 출장정지 · 500만원 이상 제재금<br>(면허취소) 15~25경기 출장정지 · 800만원 이상 제재금</td><td>(면허정지) 70경기 출장정지 · (면허취소) 1년 실격처분<br>(2회) 5년 실격 · (3회 이상) 영구 실격</td></tr>
+    </table></div>
+    <div class="reveal-q" id="rq"><div class="ta">스포츠계에는 규정 존재</div><div class="tb">연예계는?</div><div class="hint">클릭하거나 스크롤하면 나타납니다</div></div>
+
+    <div class="law">
+      <div class="card rv"><div class="kicker" style="margin:0 0 6px">2019년 7월 · 오영훈 의원 대표발의</div><h4 style="margin:0 0 10px;font-size:22px">방송법 일부개정안</h4><p style="margin-bottom:10px;display:flex;gap:.3em"><span style="flex:none"><b style="color:#fff">배경</b> ·</span><span>방송에 출연하는 연예인의 범죄 사례 급증.<br>방송의 공적 책임을 위해 범죄자 출연 제재 필요.</span></p><span class="stamp" id="stamp">상정 불발</span></div>
+      <div class="card rv d1"><b style="color:#fff">방송 출연 금지 대상 (금고 이상의 형 확정자)</b><div style="margin-top:10px"><span class="tag">마약류 관련 범죄</span><span class="tag">성폭력·아동청소년 성범죄</span><span class="tag">음주운전</span><span class="tag">도박</span></div><p style="margin-top:8px">위반 시 제작자 벌칙 규정 신설<br>— 그러나 과학기술정보방송통신위원회 심사 안건으로 <b style="color:#fff">상정되지 못했습니다.</b></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 기획 · 수집 -->
+<section class="ch" id="c4" data-t="기획의도 · 데이터 수집">
+  <div class="wrap">
+    <div class="kicker rv">04 · 기획의도 &amp; 데이터 수집</div>
+    <h2 class="display rv">'그 연예인'은<br>얼마나 자숙했는가</h2>
+    <p class="lead rv">대중은 복귀를 감정적으로는 수용하지만,<br>복귀 패턴의 실태를 보여주는 객관적 지표는 부족합니다.</p>
+    <div class="cards3">
+      <div class="card rv"><h4>감정적 비난 한계 극복</h4><p>구체적 데이터 없이 단순하게<br>'그 연예인은 자숙 기간이 너무 짧았어.'</p></div>
+      <div class="card rv d1"><h4>메커니즘 시각화</h4><p>평균 자숙 기간을 정량적으로 밝혀내고 시각화<br>(웹 크롤링을 통한 데이터 수집/세분화)</p></div>
+      <div class="card rv d2"><h4>복귀 통로 실태 파악</h4><p>지상파 자격 제한을 우회한 유튜브나 OTT 등<br>타 플랫폼으로의 편법 복귀 실태 파악</p></div>
+    </div>
+    <h3 class="rv" style="margin:70px 0 0;font-size:22px">데이터는 이렇게 모았습니다</h3>
+    <div class="reasons">
+      <div class="rv"><span class="n">1</span><p style="margin:0"><b>2016.07.01 ~ 2026.07.06 · 최근 10년</b><span>선행 연구(2025)는 2006~2012년 사건만 다뤘고, 최근 10년 연예인 범행 데이터 분석 기사는 부재. 미투·버닝썬 사건 이후를 반영.</span></p></div>
+      <div class="rv d1"><span class="n">2</span><p style="margin:0"><b>SBS 연예뉴스 선정</b><span>국내 언론사 중 연예기사를 독립 카테고리로 장기간 축적한 사례가 많지 않고, SBS 연예뉴스가 가장 방대한 연예기사 아카이브를 제공.</span></p></div>
+      <div class="rv d2"><span class="n">3</span><p style="margin:0"><b>5가지 범죄유형 선정</b><span>2019년 방송법 개정안의 방송출연 금지 기준 참고: 마약·성폭력·음주운전·도박, 그리고 대표적 대인범죄인 폭행.</span></p></div>
+    </div>
+    <div class="steps rv">
+      <div><h5>① 이름 후보 추출</h5><p>정규 표현식으로 직업+이름 패턴 추출,<br>등장 빈도 집계</p></div>
+      <div><h5>② 필터링 단계</h5><p>'혐의·기소·입건·구속·유죄·징역' 등<br>법적 절차 키워드 필터링</p></div>
+      <div><h5>③ 오탐 제거</h5><p>일반명사·경찰·검찰 등을 제거하고<br>실제 연예인만 남김</p></div>
+      <div><h5>④ 정확성 확인</h5><p>범죄 혐의 및 유죄 확정 직접 확인 후<br>복귀 시점 기록</p></div>
+    </div>
+    <p class="lead rv" style="margin-top:28px;font-weight:700;color:var(--y)">▶ 최초 보도 시점부터 복귀 일자까지의 기간 중심으로 자숙기간 도출</p>
+  </div>
+</section>
+
+<div class="tape"></div>
+
+<!-- 분석 -->
+<section class="ch" id="c5" data-t="데이터 분석">
+  <div class="wrap">
+    <div class="kicker rv">05 · 데이터 분석</div>
+    <h2 class="display rv">범죄별 자숙기간 추적</h2>
+    <p class="lead rv" style="max-width:none">범죄 유형을 고르고, 범례를 눌러 형량별로 걸러보세요. 막대에 마우스를 올리면 상세가 나옵니다.<br>점선 확장은 아직 복귀하지 않은 '진행 중' 자숙입니다.</p>
+    <div class="tabs rv" id="tabs"></div>
+    <div id="stats" class="stats"></div>
+    <div class="panel">
+      <div class="legend" id="legend"></div>
+      <div class="chwrap" id="chart"></div>
+      <div class="small">✝ 사망 · 막대 끝 "~" 및 점선: 현재까지 미복귀(진행 중) · 세로 점선: 복귀자 평균</div>
+    </div>
+    <div class="takeaway" id="take"></div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+</section>
+
+<!-- 비교 -->
+<section class="ch" id="c6" data-t="범죄별 비교" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="kicker rv">06 · 한눈에 비교</div>
+    <h2 class="display rv">같은 범죄, 같은 형량인데<br>자숙은 제각각</h2>
+    <div class="panel rv" style="margin-top:34px">
+      <h4 style="margin:0 0 4px">범죄별 복귀율</h4>
+      <div class="small" style="margin:0 0 18px">유죄 확정 연예인 중 복귀한 비율 (복귀자 수 / 전체 인원)</div>
+      <div class="rate" id="rate"></div>
+    </div>
+    <div class="panel rv" style="margin-top:20px">
+      <h4 style="margin:0 0 4px">자숙기간 분포 — 점 하나가 한 사람</h4>
+      <div class="small" style="margin:0 0 18px">채워진 점은 복귀 완료, 속이 빈 점은 아직 미복귀(현재까지의 기간). 점에 마우스를 올려보세요.</div>
+      <div class="strip" id="strip"></div><div class="sax" id="sax"></div>
+      <div class="takeaway">같은 범죄 안에서도 편차가 극심하다</div>
+    </div>
+    <div class="cmp" style="margin-top:20px">
+      <div class="panel rv" id="cmpD"><h4>음주운전 · 형량별 평균 자숙</h4>
+        <div class="pair"><div class="cl"><div class="v">2년 2개월</div><div class="bx" data-h="26" style="background:var(--fine)"></div></div><div class="cl"><div class="v">1년 5개월</div><div class="bx" data-h="17" style="background:var(--susp)"></div></div></div>
+        <div class="lblrow"><div>벌금형</div><div>징역형 집행유예</div></div>
+        <p class="small">가벼운 벌금형이 더 오래 자숙 — 형량과 자숙은 비례하지 않았다</p></div>
+      <div class="panel rv d1" id="cmpM"><h4>마약 · 형량별 평균 자숙</h4>
+        <div class="pair"><div class="cl"><div class="v">3년 6개월</div><div class="bx" data-h="42" style="background:var(--fine)"></div></div><div class="cl"><div class="v">1년 10개월</div><div class="bx" data-h="22" style="background:var(--susp)"></div></div></div>
+        <div class="lblrow"><div>벌금형</div><div>징역형 집행유예</div></div>
+        <p class="small">같은 집유 안에서도 씨잼 6개월 vs 탑 7년 7개월</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 복귀경로 -->
+<section class="ch" id="c7" data-t="복귀 경로">
+  <div class="wrap">
+    <div class="kicker rv">07 · 복귀 경로</div>
+    <h2 class="display rv">방송 출연이 막혀도<br>길은 많았다</h2>
+    <p class="lead rv">지상파가 문을 닫아도 음반, 영화, 유튜브, OTT, 해외 활동으로 우회합니다.</p>
+    <div class="paths" style="margin-top:36px">
+      <div class="panel rv"><h4 style="margin:0 0 16px">전체 복귀 경로 (건)</h4><div class="chwrap" style="padding-top:6px" id="pathchart"></div>
+        <div class="legend" style="margin:14px 0 0" id="plegend"></div></div>
+      <div class="rv d1">
+        <div class="donut" id="donut"><svg viewBox="0 0 120 120"></svg><div class="ct"><div><b id="dn">0</b><small style="color:var(--mute)" id="dl">전체 복귀 건수</small></div></div></div>
+        <div class="callouts">
+          <div style="background:var(--dig)">OTT·유튜브 같은 디지털 플랫폼은 방송 지침의 영향을<br>상대적으로 덜 받아 복귀 경로로 활용</div>
+          <div style="background:var(--abroad)">해외 공연·팬미팅·음반 발매 등 해외 활동을 통해 국내 규제를 우회</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 결과 -->
+<section class="ch" id="c8" data-t="결과" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="kicker rv">08 · 결과</div>
+    <h2 class="display rv">데이터가 말해준 것</h2>
+    <div class="common rv" style="margin-top:28px"><span style="color:var(--y);font-size:14px;letter-spacing:.2em">공통점</span><br>동일 범죄 및 형량 내에서도 <em>자숙 기간의 편차가 크고</em>,<br>형량 간 비례성이 뚜렷하지 않으며, 복귀 방법은 우회 플랫폼 등에 의해 다양화</div>
+    <div class="res">
+      <div class="panel rv chips">
+        <div><b>음주운전</b><span>평균 2년이면 활동 재개. 복귀율이 가장 높음</span></div>
+        <div><b>마약</b><span>씨잼 6개월 vs 탑 7년. 같은 죄목도 결과가 크게 갈림</span></div>
+        <div><b>도박</b><span>복귀자 5명 중 3명이 국내가 아닌<br>일본 활동으로 먼저 복귀</span></div>
+        <div><b>성범죄</b><span>복귀한 사람이 단 한 명. 다른 범죄와 확연히 다른 양상</span></div>
+        <div style="border:0"><b>폭행</b><span>벌금형은 대체로 반년 내 복귀</span></div>
+      </div>
+      <div class="panel rv d1 finds">
+        <div><h5>1. 같은 범죄 유형에서도 자숙 기간의 편차가 크게 나타났다</h5><span>동일한 범죄를 저질렀음에도 몇 개월 만에 복귀한 사례와 수년간 복귀하지 못한 사례가 함께 존재</span></div>
+        <div><h5>2. 형량의 무거움과 자숙 기간이 비례하지 않는다</h5><span>더 무거운 형량을 받은 연예인이 오히려 더 빨리 복귀한 사례 &amp; 가벼운 처벌을 받았더라도<br>장기간 복귀하지 못한 사례 존재</span></div>
+        <div><h5>3. 복귀 방식도 활동 환경에 따라 달라졌다</h5><span>방송이 아닌 음원 발매, 공연, OTT, 유튜브, 해외 활동 등을 통해 복귀하는 사례가 많아<br>형량보다 플랫폼 환경과 시장 여건이 복귀에 큰 영향</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ch concl" id="c9" data-t="결론">
+  <div class="wrap">
+    <div class="kicker rv" style="justify-content:center">09 · 결론</div>
+    <h2 class="rv">연예계 내 출연 규정 명문화에 대한<br><span style="color:var(--y)">사회적 논의</span>가 필요하다</h2>
+    <ul>
+      <li class="rv"><span>스포츠계는 승부조작, 도핑, 성범죄 등 사회적 물의를 일으킨 선수에 대해<br>자격정지, 영구제명 등 명확한 징계 규정을 운영하고 있음</span></li>
+      <li class="rv d1">반면 연예계는 법적·제도적 기준이 부족해 자숙 기간과 복귀 시점이 여론에 크게 좌우됨</li>
+      <li class="rv d2">미디어 환경이 변화한 만큼 방송 중심의 규제만으로는 연예인 복귀를 관리하는 데 한계가 있음</li>
+      <li class="rv d3">스포츠계와 같이 객관적이고 일관된 기준을 마련하기 위한 제도적 논의가 필요함</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ch" id="c10" data-t="참고문헌" style="padding-top:60px">
+  <div class="wrap">
+    <div class="kicker">참고문헌</div>
+    <ul class="refs">
+      <li>오영훈(대표발의) (2019). 방송법 일부개정법률안. 의안번호 21653. 대한민국 국회</li>
+      <li>신하은 (2024.5.28). [기획] 연예인의 역할 및 대중의 알 권리에 대한 인식. 한국리서치 여론 속의 여론.</li>
+      <li>이승선 (n.d.). [특별기고] 어디까지가 '공인'인가? – 연예인 성폭력 사건 보도의 폭력성. 리포트플러스.</li>
+      <li>이재진 (2016). 공인의 사생활 보도 어디까지가 한계인가? 관훈저널, (139), 83-89.</li>
+      <li>최은영 (2026.1.5). 연예인과 공인 그리고 여론[이택수의 여론 읽기]. 이데일리.</li>
+      <li>최영범 (2025.2.24). 여전히 줄지 않은 유명인 사생활 보도 경쟁. 단비뉴스.</li>
+      <li>대법원 2002. 1. 22. 선고 2000다37524, 37531 판결 [손해배상(기)]</li>
+      <li>하사랑, 김범준, 김민지 (2013). 공인(公人)의 개념과 위법행위에 대한 처벌과 용서. 한국심리학회지: 사회 및 성격, 27(1), 67-84.</li>
+      <li>김진 (2020). 공적 인물에 대한 명예훼손에 관한 고찰: 새로운 모색을 위한 제언. 법학논총, 37(4), 183-214.</li>
+      <li>박대로 (2012). 공적 인물에 대한 명예훼손죄의 성립범위: 미국 연방대법원 판례의 분석을 중심으로. 형사법의 신동향, (36), 116-161.</li>
+    </ul>
+  </div>
+</section>
+<div class="tape"></div>
+<footer><span class="display">감사합니다</span>DSJA_5 TeamA+ · 고민성 양지혜 유현석 장예담 조찬희<br>데이터: 2016.07.01~2026.07.06 SBS 연예뉴스 기사 중 유죄 확정 사례</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const fmt=m=>{const y=Math.floor(m/12),r=m%12;return y&&r?`${y}년 ${r}개월`:y?`${y}년`:`${r}개월`};
+const TYPES={fine:['벌금형','var(--fine)'],susp:['징역형 집행유예','var(--susp)'],jail:['징역형 · 순수 자숙','var(--jail)'],det:['징역형 · 구속 기간','var(--pink)'],none:['형량 비공개/미정','var(--none)']};
+const tip=$('#tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+16,y=e.clientY+16;if(x+w>innerWidth-8)x=e.clientX-w-16;if(y+h>innerHeight-8)y=e.clientY-h-16;tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.opacity=0}
+
+/* hero cracks + tape */
+(function(){
+  const g=$('#cracks');let seed=7;const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  const cx=720,cy=330;
+  for(let i=0;i<16;i++){
+    let a=i/16*Math.PI*2+rnd()*.3,x=cx,y=cy,d='M'+x+' '+y;
+    const n=4+Math.floor(rnd()*4);
+    for(let k=0;k<n;k++){const L=60+rnd()*160;a+=(rnd()-.5)*.5;x+=Math.cos(a)*L;y+=Math.sin(a)*L;d+=' L'+x.toFixed(0)+' '+y.toFixed(0);
+      if(rnd()<.35){const b=a+(rnd()<.5?-1:1)*.8,bl=40+rnd()*90;const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',`M${x.toFixed(0)} ${y.toFixed(0)} L${(x+Math.cos(b)*bl).toFixed(0)} ${(y+Math.sin(b)*bl).toFixed(0)}`);p.style.setProperty('--l',bl);p.style.animationDelay=(.3+k*.25)+'s';g.appendChild(p)}}
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.style.setProperty('--l',1400);p.style.animationDelay=(i*.05)+'s';g.appendChild(p);
+  }
+  for(let r=1;r<=4;r++){const p=document.createElementNS('http://www.w3.org/2000/svg','path');const R=r*90;let d='';for(let i=0;i<=16;i++){const a=i/16*Math.PI*2,rr=R*(.85+rnd()*.3);d+=(i?'L':'M')+(cx+Math.cos(a)*rr).toFixed(0)+' '+(cy+Math.sin(a)*rr).toFixed(0)}p.setAttribute('d',d);p.style.setProperty('--l',2400);p.style.animationDelay=(.6+r*.2)+'s';g.appendChild(p)}
+  const t='POLICE LINE  ·  DO NOT CROSS  ·  CAUTION  ·  ';
+  $('#tpa').textContent=t.repeat(24);$('#tpb').textContent='CAUTION  ·  DO NOT CROSS  ·  POLICE LINE  ·  '.repeat(24);
+})();
+
+/* progress + toc */
+const secs=$$('section.ch[data-t]');
+const toc=$('#toc');
+toc.innerHTML=secs.map(s=>`<a href="#${s.id}" data-id="${s.id}"><span>${s.dataset.t}</span><i></i></a>`).join('');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;$('#bar').style.width=(h.scrollTop/(h.scrollHeight-innerHeight)*100)+'%';
+  toc.classList.toggle('on',scrollY>innerHeight*.6);
+  let cur=null;secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.45)cur=s.id});
+  $$('a',toc).forEach(a=>a.classList.toggle('act',a.dataset.id===cur));
+},{passive:true});
+
+/* reveal + triggers */
+function countUp(el){const to=+el.dataset.count,dec=+(el.dataset.dec||0),suf=el.dataset.suf||'';const t0=performance.now(),D=1600;
+  (function f(t){const p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,4);el.textContent=(to*e).toFixed(dec)+suf;if(p<1)requestAnimationFrame(f)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');
+  $$('[data-count]',el).forEach(countUp);if(el.dataset.count)countUp(el);
+  $$('.fl',el).forEach(f=>f.style.width=f.dataset.w+'%');
+  io.unobserve(el)}),{threshold:.2});
+$$('.rv').forEach(e=>io.observe(e));
+$$('.cycle,.reveal-q,#stamp').forEach(e=>io.observe(e));
+$('#rq').onclick=e=>e.currentTarget.classList.add('in');
+
+/* cycle hover */
+(function(){const st=$$('#cycle .step');let i=0;const set=k=>st.forEach(s=>s.classList.toggle('hot',+s.dataset.k===k));
+  let timer=setInterval(()=>{set(i++%4)},1400);
+  st.forEach(s=>{s.onmouseenter=()=>{clearInterval(timer);set(+s.dataset.k)};s.onmouseleave=()=>{timer=setInterval(()=>{set(i++%4)},1400)}})})();
+
+/* compare bars */
+['cmpD','cmpM'].forEach(id=>{const p=$('#'+id);new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){p.classList.add('in');$$('.bx',p).forEach(b=>b.style.height=(+b.dataset.h*5.8)+'px');o.disconnect()}},{threshold:.4}).observe(p)});
+
+/* ===== DATA ===== */
+// [name,type,total months,{serve,det,ong,dead}]
+const D={
+drug:{label:'마약',max:120,ticks:[0,24,48,72,96,120],avg:25,
+ rows:[['가인','fine',54],['하정우','fine',31],['최창엽','susp',117,{ong:1}],['탑(최승현)','susp',91],['기주봉','susp',1],['정석원','susp',12],['씨잼','susp',6],['로버트 할리','susp',87,{ong:1}],['박유천','susp',19],['비아이','susp',22],['정일훈','susp',47,{serve:41,det:6}],['휘성','susp',12,{dead:1}],['아이언','susp',6,{dead:1}],['킬라그램','susp',64,{ong:1}],['안지석','susp',41,{ong:1}],['서민재(서은우)','susp',46,{ong:1}],['남태현','susp',46,{ong:1}],['유아인','susp',9],['식케이','susp',26,{ong:1}],['돈스파이크','jail',45,{serve:25,det:20,ong:1}],['에이미','jail',58,{serve:30,det:28,ong:1}],['윤철종','susp',108,{ong:1}]],
+ stats:[['전체 복귀','12 / 22명','54.5%'],['복귀자 평균','2년 1개월','표준편차 2년 2개월'],['벌금형','2 / 2명','100% · 평균 3년 6개월'],['징역형 집행유예','10 / 18명','55.6% · 평균 1년 10개월'],['징역형','0 / 2명','0% · 산출 불가']],
+ take:'총 22명으로 표본이 가장 많은 범죄 — 형량이 가볍다고 빨리 복귀하고, 무겁다고 늦게 복귀하는 것이 아니다',
+ notes:['형량 간: 징역형 집행유예가 벌금형보다 형량이 더 무겁지만 자숙기간은 벌금형보다 짧음 (집유 평균 1년 10개월 vs 벌금 3년 6개월)','형량 내: 최장 자숙은 탑(최승현) 약 7년 7개월, 최단은 기주봉 약 1개월(씨잼·아이언 약 6개월) — 같은 집행유예인데 큰 편차','돈스파이크·에이미 등 징역형 2명은 모두 미복귀']},
+assault:{label:'폭행',max:120,ticks:[0,24,48,72,96,120],avg:12,
+ rows:[['씨잼','fine',4],['황영웅','fine',8],['MC딩동','fine',12],['신종령','susp',106,{ong:1}],['아이언(1차)','susp',47,{dead:1}],['정상수','susp',10],['김창렬','none',0],['강인','none',17],['임영규','none',34],['아이언(2차)','none',2,{dead:1}],['영빈','none',41,{ong:1}]],
+ stats:[['전체 복귀','7 / 11명','63.6%'],['복귀자 평균','1년','중앙값 10개월'],['벌금형','3 / 3명','100% · 평균 8개월'],['징역형 집행유예','1 / 3명','33.3% · 10개월']],
+ take:'폭행죄는 합의로 인해 형량에 따른 자숙 기간 비교가 어렵다',
+ notes:['대부분 합의로 해결되어 형량 간 비교가 어려움 — 벌금형(3명) 전원 복귀, 평균 8개월','김창렬은 자숙 없이(0개월) 활동을 이어간 반면 신종령은 8년 넘게 미복귀 — 편차 극심','형량 보도가 없는 사례 안에서도 임영규 2년 10개월, 아이언 2개월 만에 사망 등 편차 존재']},
+sexual:{label:'성범죄',max:72,ticks:[0,12,24,36,48,60,72],avg:null,
+ rows:[['힘찬(1차)','jail',39,{serve:29,det:10,ong:1}],['힘찬(2·3차)','susp',25,{ong:1}],['강지환','susp',5,{ong:1}],['정준영','jail',57,{serve:14,det:43,ong:1}],['승리','jail',49,{serve:40,det:9,ong:1}],['뱃사공','jail',27,{serve:15,det:12}],['유영재','jail',27,{serve:10,det:17,ong:1}],['문태일','jail',23,{serve:11,det:12,ong:1}]],
+ stats:[['전체 복귀','1 / 7명','14.3%'],['벌금형','—','해당 사례 없음'],['징역형 집행유예','0 / 2명','0%'],['징역형','1 / 5명','20% · 뱃사공']],
+ take:'성범죄는 복귀가 사실상 막힌 유일한 범주 — 자숙이 아니라 퇴출에 가깝다',
+ notes:['형량이 가벼운 쪽에서 오히려 복귀가 한 명도 나오지 않음 (집행유예 2명 모두 미복귀)','표본 내 유일한 복귀자: 뱃사공(징역형)','승리 4년 1개월, 정준영 4년 9개월 이상 — 출소 후에도 복귀 기록 없음','힘찬은 1차·2~3차 사건을 구분해 표기 (인원 기준 7명)']},
+gamble:{label:'도박',max:72,ticks:[0,12,24,36,48,60,72],avg:37,
+ rows:[['김형인','fine',12],['슈','susp',26],['최재욱','susp',70,{ong:1}],['승리','jail',47,{serve:18,det:29,ong:1}],['정진우','jail',36,{serve:12,det:24}],['윤학','none',56],['성제','none',56]],
+ stats:[['전체 복귀','5 / 7명','71.4%'],['복귀자 평균','3년 1개월','중앙값 3년'],['벌금형','1 / 1명','100% · 1년'],['징역형 집행유예','1 / 2명','50% · 2년 2개월'],['징역형','1 / 2명','50%']],
+ take:'복귀자 5명 중 3명(슈·윤학·성제)은 일본 활동으로 복귀 — 도박은 형량이 아니라 "국내를 우회할 무대가 있느냐"가 복귀를 갈랐다',
+ notes:['벌금형 김형인 1년, 징역형 집행유예 슈 2년 2개월, 징역형 정진우 3년 — 복귀자만 보면 형량 순서였지만 미복귀자를 포함하면 편차가 큼','형량 내: 징역형 집행유예 슈 2년 2개월(복귀) vs 최재욱 5년 10개월째 미복귀','윤학·성제는 동일 사건으로 자숙기간도 4년 8개월로 동일']},
+dui:{label:'음주운전',max:60,ticks:[0,12,24,36,48,60],avg:23,
+ rows:[['강인','fine',36],['김현중','fine',19],['구재이','fine',10],['준케이','fine',34],['안재욱','fine',5],['한동근','fine',16],['임영민','fine',38],['리지','fine',47],['배성우','fine',33],['곽도원','fine',26],['김새론','fine',33,{dead:1}],['길(리쌍)','susp',30],['노우진','susp',17],['노엘(1차)','susp',19],['MC딩동','susp',0],['김호중','jail',26,{serve:1,det:25,ong:1}],['손승원','jail',18,{serve:1,det:17,ong:1}],['노엘(2차)','jail',21,{serve:8,det:13}]],
+ stats:[['전체 복귀','14 / 17명','82.4% · 가장 높음'],['복귀자 평균','1년 11개월','표준편차 1년 2개월'],['벌금형','10 / 11명','90.9% · 평균 2년 2개월'],['징역형 집행유예','4 / 4명','100% · 평균 1년 5개월'],['징역형','1 / 3명','33% · 노엘(2차)']],
+ take:'형량의 경중이 자숙 기간을 결정하지 않으며, 가벼운 처분이 반드시 빠른 복귀로 이어지는 것은 아니다',
+ notes:['벌금형 평균(2년 2개월)이 징역형 집행유예 평균(1년 5개월)보다 길다 — 노엘(장용준)은 집행유예에도 1년 7개월 만에 복귀를 시도','벌금형 안에서도 안재욱 5개월 vs 리지 3년 11개월 — 최대 3년 이상 차이','징역형 중 유일한 복귀자는 노엘(2차). 김호중·손승원은 미복귀']}
+};
+const ORDER=['drug','assault','sexual','gamble','dui'];
+let cur='drug',off=new Set();
+
+/* tabs */
+$('#tabs').innerHTML=ORDER.map(k=>`<button data-k="${k}">${D[k].label}<span style="opacity:.6;font-weight:500;margin-left:6px">${D[k].rows.length}</span></button>`).join('');
+$$('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.k;off.clear();render()});
+
+function types(rows){const s=new Set();rows.forEach(r=>{const o=r[3]||{};if(o.det&&r[1]==='jail'){s.add('jail');s.add('det')}else if(o.det){s.add('susp');s.add('det')}else s.add(r[1])});return ['fine','susp','jail','det','none'].filter(t=>s.has(t))}
+
+function render(){
+  const d=D[cur];$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+  $('#stats').innerHTML=d.stats.map((s,i)=>`<div class="stat" style="animation:fadeup .5s ${i*.07}s both"><small>${s[0]}</small><b class="${i==0?'y':''}">${s[1]}</b><em>${s[2]}</em></div>`).join('');
+  $('#take').textContent=d.take;$('#notes').innerHTML=d.notes.map(n=>`<li>${n}</li>`).join('');
+  const ts=types(d.rows);
+  $('#legend').innerHTML=ts.filter(t=>t!=='det').map(t=>`<button data-t="${t}" class="${off.has(t)?'off':''}"><i style="background:${TYPES[t][1]}"></i>${TYPES[t][0]}${t==='jail'?'':''}</button>`).join('')+(ts.includes('det')?`<span style="font-size:13px;color:var(--ink2);display:flex;gap:8px;align-items:center;padding:0 6px"><i style="width:14px;height:10px;border-radius:3px;background:var(--pink);display:block"></i>구속 기간</span>`:'');
+  $$('#legend button').forEach(b=>b.onclick=()=>{const t=b.dataset.t;off.has(t)?off.delete(t):off.add(t);applyFilter()});
+  const pct=m=>m/d.max*100;
+  let h=`<div class="axis">${d.ticks.map(t=>`<i style="left:${pct(t)}%"></i><u style="left:${pct(t)}%">${t/12}년</u>`).join('')}${d.avg!=null?`<div class="avg" id="avgl" style="left:0"><span>복귀자 평균 ${fmt(d.avg)}</span></div>`:''}</div><div class="hbar">`;
+  d.rows.forEach((r,i)=>{const [nm,ty,tot,o={}]=r;
+    const segs=[];
+    if(o.det&&ty==='jail'){segs.push(['jail',0,o.serve],['det',o.serve,o.det])}
+    else if(o.det){segs.push(['susp',0,o.serve],['cream',o.serve,o.det])}
+    else segs.push([ty,0,tot]);
+    const col=t=>t==='cream'?TYPES.det[1]:TYPES[t][1];
+    h+=`<div class="nm ${o.dead?'dead':''}">${nm}</div><div class="tk" data-i="${i}" data-ty="${ty}">`+
+      segs.map((s,j)=>`<div class="seg ${j==0?'first':''} ${j==segs.length-1?'last':''}" data-l="${pct(s[1])}" data-w="${Math.max(pct(s[2]),tot===0?.6:0)}" style="left:${pct(s[1])}%;background:${col(s[0])};transition-delay:${i*.045}s"></div>`).join('')+
+      (o.ong?`<div class="ext" style="left:${pct(tot)}%;right:0;border-color:${col(segs[segs.length-1][0]==='cream'?'susp':segs[0][0])}"></div>`:'')+
+      `<div class="vl" style="left:calc(${pct(tot)}% + ${o.ong?'calc(100% - '+pct(tot)+'% - 4px)':'8px'})${o.ong?'':''};${o.ong?'transform:translateX(-100%)':''}">${tot===0?'0개월':fmt(tot)}${o.ong?'~':''}${o.dead?' <span style="color:var(--red)">(사망)</span>':''}</div></div>`;
+  });
+  h+='</div>';$('#chart').innerHTML=h;
+  // value labels: ongoing -> right-aligned at end; others after bar
+  $$('#chart .tk').forEach(tk=>{const r=d.rows[+tk.dataset.i],o=r[3]||{};const v=$('.vl',tk);
+    if(o.ong){v.style.left='calc(100% + 8px)';v.style.right='auto';v.style.transform='none'}else{v.style.left=`calc(${r[2]/d.max*100}% + 8px)`;v.style.transform='none'}});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{$$('#chart .seg').forEach(s=>s.style.width=s.dataset.w+'%');$$('#chart .ext,#chart .vl').forEach(e=>e.style.opacity=1);
+    const a=$('#avgl');if(a){a.style.opacity=1;a.style.left=(d.avg/d.max*100)+'%'}}));
+  $$('#chart .tk').forEach(tk=>{const r=d.rows[+tk.dataset.i];
+    tk.onmousemove=e=>{tk.classList.add('hv');const o=r[3]||{};
+      const status=o.dead?'사망':o.ong?'미복귀 (진행 중)':'복귀 완료';
+      let body=`<div class="r"><span>형량</span><span>${TYPES[r[1]][0].replace('징역형 · 순수 자숙','징역형')}</span></div><div class="r"><span>자숙기간</span><span>${r[2]===0?'0개월':fmt(r[2])}${o.ong?' ~':''}</span></div>`;
+      if(o.det)body+=`<div class="r"><span>${r[1]==='jail'?'순수 자숙':'자숙'}</span><span>${fmt(o.serve)}</span></div><div class="r"><span>구속 기간</span><span>${fmt(o.det)}</span></div>`;
+      body+=`<div class="r"><span>상태</span><span>${status}</span></div>`;
+      showTip(e,`<b>${r[0]}</b>${body}`)};
+    tk.onmouseleave=()=>{tk.classList.remove('hv');hideTip()}});
+  applyFilter();
+}
+function applyFilter(){
+  $$('#legend button').forEach(b=>b.classList.toggle('off',off.has(b.dataset.t)));
+  $$('#chart .tk').forEach(tk=>tk.classList.toggle('dim',off.has(tk.dataset.ty)));
+}
+render();
+
+/* rate bars */
+(function(){
+  const rows=[['음주운전',82.4,'14 / 17명'],['도박',71.4,'5 / 7명'],['폭행',63.6,'7 / 11명'],['마약',54.5,'12 / 22명'],['성범죄',14.3,'1 / 7명']];
+  const el=$('#rate');
+  el.innerHTML=rows.map((r,i)=>`<div style="font-weight:700">${r[0]}</div><div class="rt" data-v="${r[1]}" data-tip="${r[0]}|${r[2]}|${r[1]}%"><div class="rf" style="transition-delay:${i*.12}s"></div></div><div><b data-count="${r[1]}" data-dec="1" data-suf="%">0%</b><small>${r[2]}</small></div>`).join('');
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){$$('.rt',el).forEach(t=>$('.rf',t).style.width=t.dataset.v+'%');$$('[data-count]',el).forEach(countUp);o.disconnect()}},{threshold:.4}).observe(el);
+  $$('.rt',el).forEach(t=>{t.onmousemove=e=>{const [a,b,c]=t.dataset.tip.split('|');showTip(e,`<b>${a}</b><div class="r"><span>복귀자</span><span>${b}</span></div><div class="r"><span>복귀율</span><span>${c}</span></div>`)};t.onmouseleave=hideTip});
+})();
+
+/* strip plot */
+(function(){
+  const MAX=120,el=$('#strip'),ax=$('#sax');
+  const cols={fine:'var(--fine)',susp:'var(--susp)',jail:'var(--jail)',none:'var(--none)'};
+  el.innerHTML=ORDER.map(k=>{const d=D[k];const rets=d.rows.filter(r=>!(r[3]||{}).ong&&!(r[3]||{}).dead).map(r=>r[2]);
+    const lo=Math.min(...rets),hi=Math.max(...rets);
+    return `<div class="lb">${d.label}</div><div class="rw" data-k="${k}"><div class="rng" data-l="${lo}" data-w="${hi-lo}" style="left:${lo/MAX*100}%"></div>${d.rows.map((r,i)=>{const o=r[3]||{};return `<div class="dot ${o.ong?'o':''}" data-k="${k}" data-i="${i}" style="left:${Math.min(r[2],MAX-2)/MAX*100}%;background:${cols[r[1]]};color:${cols[r[1]]};transition-delay:${i*.04}s"></div>`}).join('')}</div>`}).join('');
+  ax.innerHTML=[0,2,4,6,8,10].map(y=>`<u style="left:${y*12/MAX*100}%">${y}년</u>`).join('');
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){el.classList.add('in');$$('.rng',el).forEach(r=>r.style.width=(r.dataset.w/MAX*100)+'%');o.disconnect()}},{threshold:.3}).observe(el);
+  $$('.dot',el).forEach(dt=>{const r=D[dt.dataset.k].rows[+dt.dataset.i],o=r[3]||{};
+    dt.onmousemove=e=>showTip(e,`<b>${r[0]}</b><div class="r"><span>범죄</span><span>${D[dt.dataset.k].label}</span></div><div class="r"><span>형량</span><span>${TYPES[r[1]][0].replace('징역형 · 순수 자숙','징역형')}</span></div><div class="r"><span>자숙</span><span>${r[2]===0?'0개월':fmt(r[2])}${o.ong?' ~ (미복귀)':o.dead?' (사망)':''}</span></div>`);
+    dt.onmouseleave=hideTip});
+  // legend row below
+  const lg=document.createElement('div');lg.className='legend';lg.style.marginTop='12px';
+  lg.innerHTML=Object.entries({fine:'벌금형',susp:'징역형 집행유예',jail:'징역형',none:'비공개/미정'}).map(([k,v])=>`<span style="font-size:13px;color:var(--ink2);display:flex;gap:6px;align-items:center"><i style="width:10px;height:10px;border-radius:50%;background:${cols[k]};display:block"></i>${v}</span>`).join('')+'<span style="font-size:13px;color:var(--ink2);display:flex;gap:6px;align-items:center"><i style="width:10px;height:10px;border-radius:50%;border:2px solid var(--ink2);display:block"></i>미복귀</span>';
+  ax.after(lg);
+})();
+
+/* return paths */
+(function(){
+  const P=[['음반 발매',13,'g'],['영화',4,'g'],['유튜브',3,'d'],['OTT 드라마',3,'d'],['콘서트',3,'g'],['해외 라이브 공연',2,'a'],['해외 팬미팅',2,'a'],['드라마',2,'g'],['방송',2,'g'],['예능',2,'g'],['해외 음반 발매',1,'a'],['라디오',1,'g'],['웹드라마',1,'g'],['연극',1,'g'],['버스킹 및 신곡 발표',1,'g']];
+  const C={g:['일반 활동','#9a998f'],d:['온라인/디지털 매체 (OTT·유튜브)','var(--dig)'],a:['해외 활동','var(--abroad)']};
+  const el=$('#pathchart');
+  el.innerHTML='<div class="hbar" style="grid-template-columns:130px 1fr">'+P.map((p,i)=>`<div class="nm">${p[0]}</div><div class="tk" data-p="${i}"><div class="seg first last" data-w="${p[1]/14*100}" style="background:${C[p[2]][1]};transition-delay:${i*.05}s"></div><div class="vl" style="left:calc(${p[1]/14*100}% + 8px)">${p[1]}건</div></div>`).join('')+'</div>';
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){$$('.seg',el).forEach(s=>s.style.width=s.dataset.w+'%');$$('.vl',el).forEach(v=>v.style.opacity=1);o.disconnect()}},{threshold:.3}).observe(el);
+  $$('.tk',el).forEach(tk=>{const p=P[+tk.dataset.p];tk.onmousemove=e=>{tk.classList.add('hv');showTip(e,`<b>${p[0]}</b><div class="r"><span>건수</span><span>${p[1]}건</span></div><div class="r"><span>분류</span><span>${C[p[2]][0]}</span></div>`)};tk.onmouseleave=()=>{tk.classList.remove('hv');hideTip()}});
+  $('#plegend').innerHTML=Object.values(C).map(c=>`<span style="font-size:13px;color:var(--ink2);display:flex;gap:6px;align-items:center"><i style="width:14px;height:10px;border-radius:3px;background:${c[1]};display:block"></i>${c[0]}</span>`).join('');
+  // donut
+  const tot=P.reduce((s,p)=>s+p[1],0),grp={g:0,d:0,a:0};P.forEach(p=>grp[p[2]]+=p[1]);
+  const svg=$('#donut svg'),R=44,Cc=2*Math.PI*R;let acc=0;const NS='http://www.w3.org/2000/svg';
+  const circs=Object.keys(grp).map(k=>{const c=document.createElementNS(NS,'circle');const len=grp[k]/tot*Cc;c.setAttribute('cx',60);c.setAttribute('cy',60);c.setAttribute('r',R);c.setAttribute('stroke',C[k][1]);
+    c.setAttribute('stroke-dasharray',`${len-1.5} ${Cc}`);c.setAttribute('stroke-dashoffset',len);c.dataset.off=-acc;acc+=len;svg.appendChild(c);
+    c.onmouseenter=()=>{$('#dn').textContent=grp[k];$('#dl').textContent=C[k][0]};c.onmouseleave=()=>{$('#dn').textContent=tot;$('#dl').textContent='전체 복귀 건수'};
+    c.onmousemove=e=>showTip(e,`<b>${C[k][0]}</b><div class="r"><span>건수</span><span>${grp[k]}건</span></div><div class="r"><span>비중</span><span>${(grp[k]/tot*100).toFixed(1)}%</span></div>`);c.addEventListener('mouseleave',hideTip);return c});
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){circs.forEach((c,i)=>setTimeout(()=>c.style.strokeDashoffset=c.dataset.off,i*250));
+    const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1400);$('#dn').textContent=Math.round(tot*p);if(p<1)requestAnimationFrame(f)})(t0);o.disconnect()}},{threshold:.4}).observe($('#donut'));
+})();
+</script>
+</body>
+</html>
